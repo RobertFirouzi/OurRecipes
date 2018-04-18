@@ -1,8 +1,6 @@
 from enum import Enum
 import database
 
-#TODO - add to GIT!
-
 #Index definitions
 RECIPE_ID = 0
 RECIPE_NAME = 1
@@ -252,7 +250,7 @@ class RecipeBookModel:
 if __name__ == '__main__':
     recipeBook = RecipeBookModel()
     recipeBook.loadRecipes()
-    recipeBook.deleteRecipe(3)
+    recipes = recipeBook.getRecipes(RecipeFilter())
 
     # filter1 = RecipeFilter(ChefEnum.NA,
     #                        ApplianceEnum.NA,
