@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabWidget</class>
+ <widget class="QTabWidget" name="TabWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1097</width>
+    <height>649</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TabWidget</string>
+  </property>
+  <property name="currentIndex">
+   <number>2</number>
+  </property>
+  <widget class="QWidget" name="tab_2">
+   <attribute name="title">
+    <string>Search</string>
+   </attribute>
+   <widget class="QTableWidget" name="table_Recipes">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>40</y>
+      <width>721</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>Select</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Chef</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Appliance</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Prep Time</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Cook Time</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Servings</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>20</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Chef:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_Chef">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>20</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Appliance:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_Appliance">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>50</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>90</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;  Prep Time &lt;</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_PrepLow">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_PrepHigh">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>90</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
+    <property name="value">
+     <number>9999</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_CookHigh">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>130</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
+    <property name="value">
+     <number>9999</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>130</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;  Cook Time &lt;</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_CookLow">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>130</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="list_IngredientsFilter">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>230</y>
+      <width>291</width>
+      <height>341</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>20</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Recipes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>210</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ingredients</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_Search">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>580</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Search</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_ViewIngredients">
+    <property name="geometry">
+     <rect>
+      <x>884</x>
+      <y>580</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>View Ingredients </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_ViewRecipes">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>580</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>View Recipes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_EditRecipe">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>580</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Edit Recipe</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_DeleteRecipe">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>580</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete Recipe</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_CookLow_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_CookHigh_2">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>170</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
+    <property name="value">
+     <number>9999</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>170</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;  Servings &lt;</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="tab_3">
+   <attribute name="title">
+    <string>View</string>
+   </attribute>
+   <widget class="QTextBrowser" name="text_output">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>40</y>
+      <width>691</width>
+      <height>561</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="list_Viewing">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>331</width>
+      <height>561</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_viewing">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Viewing:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Output">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>20</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Recipes:</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="tab">
+   <attribute name="title">
+    <string>Create/Edit</string>
+   </attribute>
+   <widget class="QComboBox" name="combo_ApplianceNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>440</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>410</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Chef:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_CookNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>520</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_ChefNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>410</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>520</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cook Time: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>450</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Appliance:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>480</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Prep Time:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_PrepNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>480</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>90</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_NameNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>90</y>
+      <width>261</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Description:</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="text_DescriptionNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>120</y>
+      <width>261</width>
+      <height>271</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_ServingsNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>560</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>560</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Servings:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>80</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ingredient Type:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_IngredientTypeNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>80</y>
+      <width>231</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>30</y>
+      <width>201</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add new ingredient type to database:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_IngredientAddToDB">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>30</y>
+      <width>241</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_AddIngredientToDB">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>40</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>330</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>New Step:</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="text_NewStep">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>330</y>
+      <width>601</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>380</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Steps:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_AddNewStep">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>340</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_20">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>120</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit Type:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_UnitTypeNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>120</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_UnitNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>160</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>160</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>200</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Amount:</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="table_AddedIngredients">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>100</y>
+      <width>351</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Unit</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="button_RemoveIngredient">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>280</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Ingredient</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>80</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Ingredients</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="double_AmountNewRecipe">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>200</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <double>9999.989999999999782</double>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>250</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Ingredient</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_DeleteStep">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>580</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete Step</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_MoveStepUp">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>580</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Move Step Up</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_MoveStepDown">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>580</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Move Step Down</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="table_CurrentSteps">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>380</y>
+      <width>641</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>30</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>30</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>No.</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Step</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QComboBox" name="combo_UnitTypeNewRecipe_2">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>10</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>10</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit Type:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_25">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>40</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_UnitNewRecipe_2">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>40</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_Save">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SAVE</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_SaveType">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(As a new Recipe)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_Discard">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Discard</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_SaveType_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>50</y>
+      <width>261</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(No changes to recipe book, start a fresh recipe)</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>button_Search</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedSearch()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>266</x>
+     <y>613</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>225</x>
+     <y>626</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_DeleteRecipe</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedDeleteRecipe()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>390</x>
+     <y>616</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>389</x>
+     <y>635</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_EditRecipe</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedEditRecipe()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>501</x>
+     <y>611</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>501</x>
+     <y>619</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_ViewIngredients</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedViewIngredients()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>919</x>
+     <y>618</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>812</x>
+     <y>617</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_ViewRecipes</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedViewRecipes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1025</x>
+     <y>611</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>929</x>
+     <y>643</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedAddIngredient()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>393</x>
+     <y>288</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AddIngredientToDB</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedIngredientAddToDatabase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1008</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>796</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_RemoveIngredient</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedRemoveIngredient()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>790</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1090</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AddNewStep</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedAddStep()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1061</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1090</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_DeleteStep</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedDeleteStep()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>617</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>453</x>
+     <y>639</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_MoveStepDown</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedMoveStepDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>947</x>
+     <y>612</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>827</x>
+     <y>643</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_MoveStepUp</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedMoveStepUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1038</x>
+     <y>609</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>930</x>
+     <y>643</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_Save</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>75</x>
+     <y>-32</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_Discard</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedDiscard()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>62</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-71</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>clickedSearch()</slot>
+  <slot>clickedDeleteRecipe()</slot>
+  <slot>clickedEditRecipe()</slot>
+  <slot>clickedViewIngredients()</slot>
+  <slot>clickedViewRecipes()</slot>
+  <slot>clickedAddIngredient()</slot>
+  <slot>clickedIngredientAddToDatabase()</slot>
+  <slot>clickedRemoveIngredient()</slot>
+  <slot>clickedAddStep()</slot>
+  <slot>clickedDeleteStep()</slot>
+  <slot>clickedMoveStepDown()</slot>
+  <slot>clickedMoveStepUp()</slot>
+  <slot>clickedSave()</slot>
+  <slot>clickedDiscard()</slot>
+ </slots>
+</ui>
