@@ -1,6 +1,8 @@
 from enum import Enum
 import database
 
+#TODO - don't use enums for Chef/Oven.  Load the name from the data base
+
 #Index definitions
 RECIPE_ID = 0
 RECIPE_NAME = 1
@@ -132,7 +134,7 @@ class RecipeBookModel:
         self.recipes = list()
 
 
-    def loadRecipes(self, filters = tuple()):
+    def loadRecipes(self):
         sqlQuery = "SELECT * FROM Recipes"
         recipe_rows = database.getRecipes(sqlQuery)
 
@@ -190,8 +192,10 @@ class RecipeBookModel:
             addRecipe = True
             if recipeFilter.chefEnum != ChefEnum.NA and recipeFilter.chefEnum != recipe.chefEnum:
                 addRecipe = False
-            if recipeFilter.applianceEnum != ApplianceEnum.NA and recipeFilter.applianceEnum != recipe.applianceEnum:
+            if (recipeFilter.applianceEnum.value != ApplianceEnum.NA.value):# and recipeFilter.applianceEnum != recipe.applianceEnum:
                 addRecipe = False
+                print(recipeFilter.applianceEnum.value)
+                print(ApplianceEnum.NA.value)
             if  not (recipeFilter.prepTime[0] <= recipe.prepTime <= recipeFilter.prepTime[1]):
                 addRecipe = False
             if  not (recipeFilter.cookTime[0] <= recipe.cookTime <= recipeFilter.cookTime[1]):

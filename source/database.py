@@ -1,5 +1,5 @@
 import sqlite3 as DATABASE#using sqlite database
-DB_LOCATION = 'C:\\Users\\Robert\\Repos\\RecipeBook\\source\\db_recipes.sqlite'
+DB_LOCATION = 'db_recipes.sqlite'
 
 ### CONNECT TO DB ###
 def queryDB(conn, query):

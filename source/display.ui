@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>2</number>
+   <number>0</number>
   </property>
   <widget class="QWidget" name="tab_2">
    <attribute name="title">
@@ -36,7 +36,7 @@
     </property>
     <column>
      <property name="text">
-      <string>Select</string>
+      <string/>
      </property>
     </column>
     <column>
@@ -92,6 +92,21 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>NA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ashley</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Robert</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -115,6 +130,41 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>NA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Oven</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cooktop</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Crockpot</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Grill</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Other</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
@@ -301,7 +351,7 @@
      <string>Delete Recipe</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spin_CookLow_3">
+   <widget class="QSpinBox" name="spin_ServeLow">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -314,7 +364,7 @@
      <number>9999</number>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spin_CookHigh_2">
+   <widget class="QSpinBox" name="spin_ServeHigh">
     <property name="geometry">
      <rect>
       <x>210</x>
