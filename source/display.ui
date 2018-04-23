@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>3</number>
   </property>
   <widget class="QWidget" name="tab_2">
    <attribute name="title">
@@ -34,6 +34,12 @@
       <pointsize>8</pointsize>
      </font>
     </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>150</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
     <column>
      <property name="text">
       <string/>
@@ -88,25 +94,10 @@
      <rect>
       <x>90</x>
       <y>20</y>
-      <width>141</width>
+      <width>161</width>
       <height>22</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>NA</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Ashley</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Robert</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -126,45 +117,10 @@
      <rect>
       <x>90</x>
       <y>50</y>
-      <width>141</width>
+      <width>161</width>
       <height>22</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>NA</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Oven</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cooktop</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Crockpot</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Grill</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Other</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
@@ -250,7 +206,7 @@
      <number>9999</number>
     </property>
    </widget>
-   <widget class="QListWidget" name="list_IngredientsFilter">
+   <widget class="QTableWidget" name="table_IngredientsFilter">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -259,6 +215,36 @@
       <height>341</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>250</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>5</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>5</number>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Ingredient Type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string/>
+     </property>
+    </column>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
@@ -393,6 +379,22 @@
      <string>&lt;  Servings &lt;</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_deleteOne">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>580</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="tab_3">
    <attribute name="title">
@@ -414,7 +416,7 @@
       <x>30</x>
       <y>40</y>
       <width>331</width>
-      <height>561</height>
+      <height>261</height>
      </rect>
     </property>
    </widget>
@@ -442,6 +444,19 @@
     </property>
     <property name="text">
      <string>Recipes:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_viewing_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Ingredient:</string>
     </property>
    </widget>
   </widget>
@@ -480,6 +495,9 @@
       <width>71</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
     </property>
    </widget>
    <widget class="QComboBox" name="combo_ChefNewRecipe">
@@ -540,6 +558,12 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
+    </property>
    </widget>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
@@ -568,7 +592,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>150</y>
       <width>61</width>
       <height>16</height>
      </rect>
@@ -581,9 +605,9 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>120</y>
+      <y>150</y>
       <width>261</width>
-      <height>271</height>
+      <height>221</height>
      </rect>
     </property>
    </widget>
@@ -595,6 +619,9 @@
       <width>71</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>9999</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_15">
@@ -613,8 +640,8 @@
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>80</y>
+      <x>430</x>
+      <y>20</y>
       <width>91</width>
       <height>20</height>
      </rect>
@@ -626,47 +653,11 @@
    <widget class="QComboBox" name="combo_IngredientTypeNewRecipe">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>80</y>
+      <x>530</x>
+      <y>20</y>
       <width>231</width>
       <height>22</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>30</y>
-      <width>201</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add new ingredient type to database:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="line_IngredientAddToDB">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>30</y>
-      <width>241</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="button_AddIngredientToDB">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>40</y>
-      <width>31</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_18">
@@ -686,104 +677,32 @@
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>330</y>
-      <width>601</width>
-      <height>41</height>
+      <y>320</y>
+      <width>491</width>
+      <height>51</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_19">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>380</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Current Steps:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="button_AddNewStep">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>340</y>
-      <width>31</width>
-      <height>23</height>
+      <x>930</x>
+      <y>350</y>
+      <width>71</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_20">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>120</y>
-      <width>61</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit Type:</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="combo_UnitTypeNewRecipe">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>120</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="combo_UnitNewRecipe">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>160</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>160</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>200</y>
-      <width>51</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Amount:</string>
+     <string>Add Step</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="table_AddedIngredients">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>100</y>
-      <width>351</width>
-      <height>171</height>
+      <x>430</x>
+      <y>90</y>
+      <width>441</width>
+      <height>211</height>
      </rect>
     </property>
     <property name="font">
@@ -791,6 +710,15 @@
       <pointsize>8</pointsize>
      </font>
     </property>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>0</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
     <column>
      <property name="text">
       <string>Type</string>
@@ -810,8 +738,8 @@
    <widget class="QPushButton" name="button_RemoveIngredient">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>280</y>
+      <x>880</x>
+      <y>260</y>
       <width>101</width>
       <height>23</height>
      </rect>
@@ -820,24 +748,11 @@
      <string>Remove Ingredient</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>80</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Current Ingredients</string>
-    </property>
-   </widget>
    <widget class="QDoubleSpinBox" name="double_AmountNewRecipe">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>200</y>
+      <x>770</x>
+      <y>20</y>
       <width>81</width>
       <height>22</height>
      </rect>
@@ -845,13 +760,16 @@
     <property name="maximum">
      <double>9999.989999999999782</double>
     </property>
+    <property name="singleStep">
+     <double>0.500000000000000</double>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>250</y>
-      <width>111</width>
+      <x>760</x>
+      <y>50</y>
+      <width>91</width>
       <height>23</height>
      </rect>
     </property>
@@ -872,39 +790,13 @@
      <string>Delete Step</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="button_MoveStepUp">
-    <property name="geometry">
-     <rect>
-      <x>990</x>
-      <y>580</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Move Step Up</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="button_MoveStepDown">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>580</y>
-      <width>101</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Move Step Down</string>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="table_CurrentSteps">
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>380</y>
+      <y>390</y>
       <width>641</width>
-      <height>191</height>
+      <height>181</height>
      </rect>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
@@ -916,65 +808,17 @@
     <attribute name="horizontalHeaderStretchLastSection">
      <bool>true</bool>
     </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
     <attribute name="verticalHeaderStretchLastSection">
      <bool>false</bool>
     </attribute>
     <column>
      <property name="text">
-      <string>No.</string>
+      <string>Steps</string>
      </property>
     </column>
-    <column>
-     <property name="text">
-      <string>Step</string>
-     </property>
-    </column>
-   </widget>
-   <widget class="QComboBox" name="combo_UnitTypeNewRecipe_2">
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>10</y>
-      <width>91</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>820</x>
-      <y>10</y>
-      <width>61</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit Type:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_25">
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>40</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit:</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="combo_UnitNewRecipe_2">
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>40</y>
-      <width>91</width>
-      <height>22</height>
-     </rect>
-    </property>
    </widget>
    <widget class="QPushButton" name="button_Save">
     <property name="geometry">
@@ -999,7 +843,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>(As a new Recipe)</string>
+     <string>As a new Recipe</string>
     </property>
    </widget>
    <widget class="QPushButton" name="button_Discard">
@@ -1026,6 +870,384 @@
     </property>
     <property name="text">
      <string>(No changes to recipe book, start a fresh recipe)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_measureUnit">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit  NA</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_removeIngredient">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>260</y>
+      <width>61</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>999</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_removeStep">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>580</y>
+      <width>61</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>999</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_uniqueName">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>120</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_InsertStep">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>320</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insert After</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spin_InstertSpot">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>320</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>999</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="tab_4">
+   <attribute name="title">
+    <string>Config</string>
+   </attribute>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>10</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Ingredient Type To Database</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_UnitNewIngredient">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>40</y>
+      <width>131</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_IngredientAddToDB">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>241</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_AddIngredientToDB">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>40</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>40</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_AddChefToDB">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>150</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_20">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>120</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Chef To Database</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_chefAddToDB">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>150</y>
+      <width>241</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_AddApplianceToDB">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>270</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_applianceAddToDB">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>270</y>
+      <width>241</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>240</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Appliance To Database</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_chefAddToDB_2">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>40</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_26">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>40</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>20</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Measuring Unit To Database</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_AddIngredientToDB_2">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>40</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_ingredientError">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>70</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_chefError">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>180</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_applianceError">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>300</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_unitError">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>70</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -1119,27 +1341,11 @@
    <slot>clickedAddIngredient()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>393</x>
-     <y>288</y>
+     <x>795</x>
+     <y>94</y>
     </hint>
     <hint type="destinationlabel">
      <x>406</x>
-     <y>0</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_AddIngredientToDB</sender>
-   <signal>clicked()</signal>
-   <receiver>TabWidget</receiver>
-   <slot>clickedIngredientAddToDatabase()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1008</x>
-     <y>69</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>796</x>
      <y>0</y>
     </hint>
    </hints>
@@ -1151,8 +1357,8 @@
    <slot>clickedRemoveIngredient()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>790</x>
-     <y>316</y>
+     <x>952</x>
+     <y>324</y>
     </hint>
     <hint type="destinationlabel">
      <x>1090</x>
@@ -1167,8 +1373,8 @@
    <slot>clickedAddStep()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1061</x>
-     <y>380</y>
+     <x>951</x>
+     <y>392</y>
     </hint>
     <hint type="destinationlabel">
      <x>1090</x>
@@ -1189,38 +1395,6 @@
     <hint type="destinationlabel">
      <x>453</x>
      <y>639</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_MoveStepDown</sender>
-   <signal>clicked()</signal>
-   <receiver>TabWidget</receiver>
-   <slot>clickedMoveStepDown()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>947</x>
-     <y>612</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>827</x>
-     <y>643</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_MoveStepUp</sender>
-   <signal>clicked()</signal>
-   <receiver>TabWidget</receiver>
-   <slot>clickedMoveStepUp()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1038</x>
-     <y>609</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>930</x>
-     <y>643</y>
     </hint>
    </hints>
   </connection>
@@ -1256,6 +1430,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>combo_IngredientTypeNewRecipe</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>TabWidget</receiver>
+   <slot>changedIngrediantAdd()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>636</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>630</x>
+     <y>-79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_InsertStep</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedInsertStep()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>985</x>
+     <y>349</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1172</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>clickedSearch()</slot>
@@ -1268,9 +1474,9 @@
   <slot>clickedRemoveIngredient()</slot>
   <slot>clickedAddStep()</slot>
   <slot>clickedDeleteStep()</slot>
-  <slot>clickedMoveStepDown()</slot>
-  <slot>clickedMoveStepUp()</slot>
   <slot>clickedSave()</slot>
   <slot>clickedDiscard()</slot>
+  <slot>changedIngrediantAdd()</slot>
+  <slot>clickedInsertStep()</slot>
  </slots>
 </ui>

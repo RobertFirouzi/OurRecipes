@@ -1,4 +1,4 @@
-from enum import Enum
+from time import sleep
 import database
 
 #TODO - don't use enums for Chef/Oven.  Load the name from the data base
@@ -17,67 +17,49 @@ INGREDIENT_ID = 0
 INGREDIENT_TYPE_ID = 0
 INGREDIENT_NAME = 1
 INGREDIENT_TYPE = 2
-INGREDIENT_UNIT_TYPE = 2
-INGREDIENT_UNIT = 3
+INGREDIENT_MEAS_UNIT = 2
 INGREDIENT_AMOUNT = 3
+
+MEASURE_ID = 0
+MEASURE_TYPE = 1
 
 STEP_ID = 0
 STEP_RECIPE_ID = 1
 STEP_STEP_NO = 2
 STEP_TEXT = 3
 
-class UnitTypeEnum(Enum):
-    NONE = 0
-    NA = 1
-    VOLUME = 2
-    MASS = 3
-    QUANTITY = 4
+CHEF_ID = 0
+CHEF_NAME = 1
 
-class MassEnum(Enum):
-    NONE = 0
-    NA = 1
-    OUNCE = 2
-    POUND = 3
-    MILLIGRAM = 4
-    GRAM = 5
-    KILOGRAM = 6
+APPLIANCE_ID = 0
+APPLIANCE_NAME = 1
 
-class VolumeEnum(Enum):
-    NONE = 0
-    NA = 1
-    TEASPOON = 2
-    TABLESPOON = 3
-    FLUID_OUNCE = 4
-    GILL = 5
-    CUP = 6
-    PINT = 7
-    QUART = 8
-    GALLON = 9
-    MILLILITER = 10
-    LITER = 11
 
-class ChefEnum(Enum):
-    NONE = 0
-    NA = 1
-    ASHLEY = 2
-    ROBERT = 3
-
-class ApplianceEnum(Enum):
-    NONE = 0
-    NA = 1
-    OVEN = 2
-    COOKTOP = 3
-    CROCKPOT = 4
-    GRILL = 5
-    OTHER = 6
-
-class Ingredient:
-    def __init__(self, id, name, typeID, unitType, unit, amount):
+class Chef:
+    def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.typeID = typeID
-        self.unitType = unitType
-        self.unit = unit
+
+class Appliance:
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+
+class MeasureUnit:
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+
+class IngredientType:
+    def __init__(self, id, name, measureUnit):
+        self.id = id
+        self.name = name
+        self.measureUnit = measureUnit
+
+class Ingredient:
+    def __init__(self, id, ingredientType, amount):
+        self.id = id
+        self.ingredientType = ingredientType
         self.amount = amount
 
 class RecipeStep:
@@ -90,26 +72,26 @@ class RecipeStep:
 #Default state is to select all recipes
 class RecipeFilter:
     def __init__(self,
-                 chefEnum = ChefEnum.NA,
-                 applianceEnum = ApplianceEnum.NA,
+                 chef = Chef(1, 'NA'),
+                 appliance = Appliance(1,'NA'),
                  prepTime = (0,9999),
                  cookTime = (0,9999),
                  servings = (0, 9999),
-                 ingredientsTypes = tuple()): #list of ingredient type ID's
-        self.chefEnum = chefEnum
-        self.applianceEnum = applianceEnum
+                 ingredientTypes = tuple()): #list of ingredient type ID's
+        self.chef = chef
+        self.appliance = appliance
         self.prepTime = prepTime
         self.cookTime = cookTime
         self.servings = servings
-        self.ingredientsTypes = ingredientsTypes
+        self.ingredientTypes = ingredientTypes
 
 class Recipe:
     def __init__(self,
                  id,
                  name,
                  description,
-                 chefEnum,
-                 applianceEnum,
+                 chef,
+                 appliance,
                  prepTime,
                  cookTime,
                  servings,
@@ -120,8 +102,8 @@ class Recipe:
         self.id = id
         self.name = name
         self.description = description
-        self.chefEnum = chefEnum
-        self.applianceEnum = applianceEnum
+        self.chef = chef
+        self.appliance = appliance
         self.prepTime = prepTime
         self.cookTime = cookTime
         self.servings = servings
@@ -149,33 +131,26 @@ class RecipeBookModel:
             ingredient_rows = database.getIngredients(recipe_row[RECIPE_ID])
             ingredients = list()
             for ingredient_row in ingredient_rows:
-                ingredientType = database.getIngredientType(ingredient_row[INGREDIENT_TYPE])
-                unitTypeEnum = UnitTypeEnum(ingredientType[INGREDIENT_UNIT_TYPE])
+                ingredientTypeRow = database.getIngredientType(ingredient_row[INGREDIENT_TYPE])
+                measurementUnitRow = database.getMeasurementUnit(ingredientTypeRow[INGREDIENT_MEAS_UNIT])
+                measurementUnit = MeasureUnit(measurementUnitRow[MEASURE_ID], measurementUnitRow[MEASURE_TYPE])
+                ingredientType = IngredientType(ingredientTypeRow[INGREDIENT_ID],
+                                                ingredientTypeRow[INGREDIENT_NAME],
+                                                measurementUnit)
 
-                if unitTypeEnum == UnitTypeEnum.MASS:
-                    unitEnum = MassEnum(ingredientType[INGREDIENT_UNIT])
-
-                elif unitTypeEnum == UnitTypeEnum.VOLUME:
-                    unitEnum = VolumeEnum(ingredientType[INGREDIENT_UNIT])
-
-                elif unitTypeEnum == UnitTypeEnum.QUANTITY:
-                    unitEnum = MassEnum(1) #the unit is NA
-
-                else:
-                    unitEnum = MassEnum(1)
 
                 ingredients.append(Ingredient(ingredient_row[INGREDIENT_ID],
-                                              ingredientType[INGREDIENT_NAME],
-                                              ingredientType[INGREDIENT_TYPE_ID],
-                                              unitTypeEnum,
-                                              unitEnum,
+                                              ingredientType,
                                               ingredient_row[INGREDIENT_AMOUNT]))
+
+            chef = database.getChefType(recipe_row[RECIPE_CHEF])
+            appliance = database.getApplianceType(recipe_row[RECIPE_APPLIANCE])
 
             recipes.append(Recipe(recipe_row[RECIPE_ID],
                                   recipe_row[RECIPE_NAME],
                                   recipe_row[RECIPE_DESCRIP],
-                                  ChefEnum(recipe_row[RECIPE_CHEF]),
-                                  ApplianceEnum(recipe_row[RECIPE_APPLIANCE]),
+                                  Chef(chef[CHEF_ID], chef[CHEF_NAME]),
+                                  Appliance(appliance[APPLIANCE_ID], appliance[APPLIANCE_NAME]),
                                   recipe_row[RECIPE_PREP],
                                   recipe_row[RECIPE_COOK],
                                   recipe_row[RECIPE_SERVE],
@@ -185,17 +160,16 @@ class RecipeBookModel:
         self.recipes = recipes
 
     #Based on the filter object, retrun a list of recipes
-    def getRecipes(self, recipeFilter):
-        filteredRecipes = list()
+    def getRecipesDict(self, recipeFilter):
+        filteredRecipesDict = dict()
+
 
         for recipe in self.recipes:
             addRecipe = True
-            if recipeFilter.chefEnum != ChefEnum.NA and recipeFilter.chefEnum != recipe.chefEnum:
+            if recipeFilter.chef.name != 'NA' and recipeFilter.chef.id != recipe.chef.id:
                 addRecipe = False
-            if (recipeFilter.applianceEnum.value != ApplianceEnum.NA.value):# and recipeFilter.applianceEnum != recipe.applianceEnum:
+            if recipeFilter.appliance.name != 'NA' and recipeFilter.appliance.id != recipe.appliance.id:
                 addRecipe = False
-                print(recipeFilter.applianceEnum.value)
-                print(ApplianceEnum.NA.value)
             if  not (recipeFilter.prepTime[0] <= recipe.prepTime <= recipeFilter.prepTime[1]):
                 addRecipe = False
             if  not (recipeFilter.cookTime[0] <= recipe.cookTime <= recipeFilter.cookTime[1]):
@@ -203,10 +177,10 @@ class RecipeBookModel:
             if  not (recipeFilter.servings[0] <= recipe.servings <= recipeFilter.servings[1]):
                 addRecipe = False
 
-            for filterType in recipeFilter.ingredientsTypes:
+            for filterType in recipeFilter.ingredientTypes:
                 included = False
                 for ingredient in recipe.ingredients:
-                    if filterType == ingredient.typeID:
+                    if filterType.id == ingredient.ingredientType.id:
                         included = True
                         break
                 if not included:
@@ -214,9 +188,9 @@ class RecipeBookModel:
                     break
 
             if addRecipe:
-                filteredRecipes.append(recipe)
+                filteredRecipesDict[recipe.name] = recipe
 
-        return filteredRecipes
+        return filteredRecipesDict
 
     #return a list of ingredients from a list of recipes
     def getIngredients(self, recipes):
@@ -232,29 +206,79 @@ class RecipeBookModel:
         recipeList =[]
         recipeList.append('"' + recipe.name + '"')
         recipeList.append('"' + recipe.description + '"')
-        recipeList.append(recipe.chefEnum.value)
-        recipeList.append(recipe.applianceEnums.value)
+        recipeList.append(recipe.chef.id)
+        recipeList.append(recipe.appliance.id)
         recipeList.append(recipe.prepTime)
         recipeList.append(recipe.cookTime)
         recipeList.append(recipe.servings)
         database.addRecipe(recipeList)
 
-        recipeId = database.getRecipeByName(recipe.name)[0]
+        recipeId = database.getRecipeIDByName('"' +recipe.name+'"')[0]
 
         for step in recipe.recipeSteps:
             database.addRecipeStep([recipeId, step.stepNo, '"' + step.text + '"'], )
 
         for ingredient in recipe.ingredients:
-            database.addIngredient([recipeId, ingredient.typeID, ingredient.amount])
+            database.addIngredient([recipeId, ingredient.ingredientType.id, ingredient.amount])
 
     def deleteRecipe(self, recipeId):
         database.deleteRecipe(recipeId)
+
+def isRecipeNameInDB(recipeName):
+    recipe = database.getRecipeIDByName('"' +recipeName+'"')
+    if recipe:
+        return True
+    else:
+        return False
+
+
+def getChefTypesDict():
+    chefDict = dict()
+    chefRows = database.getAllChefTypes()
+
+    for row in chefRows:
+        chefDict[row[CHEF_NAME]] = Chef(row[CHEF_ID], row[CHEF_NAME])
+
+    return chefDict
+
+def getApplianceTypesDict():
+    applianceDict = dict()
+    applianceRows = database.getAllApplianceTypes()
+
+    for row in applianceRows:
+        applianceDict[row[APPLIANCE_NAME]] = Appliance(row[APPLIANCE_ID], row[APPLIANCE_NAME])
+
+    return applianceDict
+
+def getIngredientTypesDict():
+    ingredientDict = dict()
+    ingredientRows = database.getAllIngredientTypes()
+
+    for row in ingredientRows:
+        measureUnitRow = database.getMeasurementUnit(row[INGREDIENT_MEAS_UNIT])
+        ingredientDict[row[INGREDIENT_NAME]] = IngredientType(row[INGREDIENT_ID],
+                                                row[INGREDIENT_NAME],
+                                                MeasureUnit(measureUnitRow[MEASURE_ID], measureUnitRow[MEASURE_TYPE]))
+
+    return ingredientDict
+
+def getMeasureUnitsDict():
+    measureDict = dict()
+    measureRows = database.getAllMeasureUnits()
+
+    for row in measureRows:
+        measureDict[row[MEASURE_TYPE]] = MeasureUnit(row[MEASURE_ID], row[MEASURE_TYPE])
+
+    return measureDict
 
 
 if __name__ == '__main__':
     recipeBook = RecipeBookModel()
     recipeBook.loadRecipes()
-    recipes = recipeBook.getRecipes(RecipeFilter())
+    recipes = recipeBook.getRecipesDict(RecipeFilter())
+
+    print(getIngredientTypesDict())
+
 
     # filter1 = RecipeFilter(ChefEnum.NA,
     #                        ApplianceEnum.NA,

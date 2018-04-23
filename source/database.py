@@ -44,6 +44,63 @@ def getRecipes(query):
     return recipes
 
 #id
+#name
+#unit
+def getAllIngredientTypes():
+    query = "SELECT * FROM IngredientTypes"
+
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
+
+    ingredients = []
+    for row in cursor:
+        ingredients.append(row)
+
+    closeDB(conn)
+    return ingredients
+
+#[id, type]
+def getAllApplianceTypes():
+    query = "SELECT * FROM ApplianceTypes"
+
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
+
+    ingredients = []
+    for row in cursor:
+        ingredients.append(row)
+
+    closeDB(conn)
+    return ingredients
+
+#[id, type]
+def getAllChefTypes():
+    query = "SELECT * FROM ChefTypes"
+
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
+
+    ingredients = []
+    for row in cursor:
+        ingredients.append(row)
+
+    closeDB(conn)
+    return ingredients
+
+def getAllMeasureUnits():
+    query = "SELECT * FROM MeasurementUnits"
+
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
+
+    ingredients = []
+    for row in cursor:
+        ingredients.append(row)
+
+    closeDB(conn)
+    return ingredients
+
+#id
 #recipeId
 #ingredientType
 #amount
@@ -79,7 +136,6 @@ def getSteps(recipeId):
 
 #id
 #name
-#unitType
 #unit
 def getIngredientType(ingredientId):
     query = "SELECT * FROM IngredientTypes WHERE id = {}".format(ingredientId)
@@ -94,23 +150,50 @@ def getIngredientType(ingredientId):
     closeDB(conn)
     return types[0] #Hacky, just expect 1 unique result
 
-def getUnitType(typeId):
-    pass
+#[id, type]
+def getMeasurementUnit(typeId):
+    query = "SELECT * FROM MeasurementUnits WHERE id = {}".format(typeId)
 
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
+
+    types = []
+    for row in cursor:
+        types.append(row)
+
+    closeDB(conn)
+    return types[0] #Hacky, just expect 1 unique result
+
+#[id, name]
 def getApplianceType(applianceId):
-    pass
+    query = "SELECT * FROM ApplianceTypes WHERE id = {}".format(applianceId)
 
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
+
+    types = []
+    for row in cursor:
+        types.append(row)
+
+    closeDB(conn)
+    return types[0] #Hacky, just expect 1 unique result
+
+#[id, name]
 def getChefType(chefId):
-    pass
+    query = "SELECT * FROM ChefTypes WHERE id = {}".format(chefId)
 
-def getMassType(massId):
-    pass
+    conn = openDB(DB_LOCATION)
+    cursor = queryDB(conn, query)
 
-def getVolumeType(volumeId):
-    pass
+    types = []
+    for row in cursor:
+        types.append(row)
+
+    closeDB(conn)
+    return types[0] #Hacky, just expect 1 unique result
 
 #After adding a new recipe, need the entry so that can get the uniqe ID
-def getRecipeByName(name):
+def getRecipeIDByName(name):
     query = "SELECT * FROM Recipes WHERE name = {}".format(name)
 
     conn = openDB(DB_LOCATION)
@@ -121,7 +204,9 @@ def getRecipeByName(name):
         recipes.append(row)
 
     closeDB(conn)
-    return recipes[0] #Hacky, just expect 1 unique result
+    if recipes:
+        return recipes[0] #Hacky, just expect 1 unique result
+    return []
 
 def deleteRecipe(recipeId):
     query = 'DELETE FROM Recipes WHERE id = ' +str(recipeId)
@@ -186,6 +271,8 @@ def addIngredientType(ingredientType): #TODO
              + str(ingredientType[1])  + ',' \
              + str(ingredientType[2])
     addRow('IngredientTypes', columns , values)
+
+
 
 if __name__ == '__main__':
     pass
