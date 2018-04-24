@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>3</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="tab_2">
    <attribute name="title">
@@ -409,6 +409,12 @@
       <height>561</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
    </widget>
    <widget class="QListWidget" name="list_Viewing">
     <property name="geometry">
@@ -451,12 +457,87 @@
      <rect>
       <x>30</x>
       <y>320</y>
-      <width>91</width>
+      <width>131</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add Ingredient:</string>
+     <string>Add Ingredient to list:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_addIngredientView">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>420</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Ingredient</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_IngredientView">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>380</y>
+      <width>231</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="double_AmountIngredientView">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>420</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <double>9999.989999999999782</double>
+    </property>
+    <property name="singleStep">
+     <double>0.500000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_27">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>350</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Label/Note:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_measureUnitView">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>380</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit  NA</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_noteView">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>350</y>
+      <width>261</width>
+      <height>20</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -1526,6 +1607,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>button_addIngredientView</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedAddIngredientView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>451</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>209</x>
+     <y>763</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>combo_IngredientView</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>TabWidget</receiver>
+   <slot>changedIngredientView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>411</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>200</x>
+     <y>706</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>clickedSearch()</slot>
@@ -1545,5 +1658,7 @@
   <slot>clickedChefAddToDatabase()</slot>
   <slot>clickedApplianceAddToDatabase()</slot>
   <slot>clickedUnitAddToDatabase()</slot>
+  <slot>clickedAddIngredientView()</slot>
+  <slot>changedIngredientView()</slot>
  </slots>
 </ui>

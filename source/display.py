@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\Users\Robert\Repos\OurRecipes\source\display.ui'
 #
-# Created: Mon Apr 23 22:24:18 2018
+# Created: Mon Apr 23 22:59:56 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -135,6 +135,10 @@ class Ui_TabWidget(object):
         self.tab_3.setObjectName("tab_3")
         self.text_output = QtGui.QTextBrowser(self.tab_3)
         self.text_output.setGeometry(QtCore.QRect(380, 40, 691, 561))
+        font = QtGui.QFont()
+        font.setFamily("Calisto MT")
+        font.setPointSize(12)
+        self.text_output.setFont(font)
         self.text_output.setObjectName("text_output")
         self.list_Viewing = QtGui.QListWidget(self.tab_3)
         self.list_Viewing.setGeometry(QtCore.QRect(30, 40, 331, 261))
@@ -146,8 +150,28 @@ class Ui_TabWidget(object):
         self.label_Output.setGeometry(QtCore.QRect(380, 20, 51, 16))
         self.label_Output.setObjectName("label_Output")
         self.label_viewing_2 = QtGui.QLabel(self.tab_3)
-        self.label_viewing_2.setGeometry(QtCore.QRect(30, 320, 91, 16))
+        self.label_viewing_2.setGeometry(QtCore.QRect(30, 320, 131, 16))
         self.label_viewing_2.setObjectName("label_viewing_2")
+        self.button_addIngredientView = QtGui.QPushButton(self.tab_3)
+        self.button_addIngredientView.setGeometry(QtCore.QRect(120, 420, 91, 23))
+        self.button_addIngredientView.setObjectName("button_addIngredientView")
+        self.combo_IngredientView = QtGui.QComboBox(self.tab_3)
+        self.combo_IngredientView.setGeometry(QtCore.QRect(30, 380, 231, 22))
+        self.combo_IngredientView.setObjectName("combo_IngredientView")
+        self.double_AmountIngredientView = QtGui.QDoubleSpinBox(self.tab_3)
+        self.double_AmountIngredientView.setGeometry(QtCore.QRect(30, 420, 81, 22))
+        self.double_AmountIngredientView.setMaximum(9999.99)
+        self.double_AmountIngredientView.setSingleStep(0.5)
+        self.double_AmountIngredientView.setObjectName("double_AmountIngredientView")
+        self.label_27 = QtGui.QLabel(self.tab_3)
+        self.label_27.setGeometry(QtCore.QRect(30, 350, 91, 20))
+        self.label_27.setObjectName("label_27")
+        self.label_measureUnitView = QtGui.QLabel(self.tab_3)
+        self.label_measureUnitView.setGeometry(QtCore.QRect(280, 380, 51, 20))
+        self.label_measureUnitView.setObjectName("label_measureUnitView")
+        self.line_noteView = QtGui.QLineEdit(self.tab_3)
+        self.line_noteView.setGeometry(QtCore.QRect(100, 350, 261, 20))
+        self.line_noteView.setObjectName("line_noteView")
         TabWidget.addTab(self.tab_3, "")
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
@@ -373,7 +397,7 @@ class Ui_TabWidget(object):
         TabWidget.addTab(self.tab_4, "")
 
         self.retranslateUi(TabWidget)
-        TabWidget.setCurrentIndex(3)
+        TabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.button_Search, QtCore.SIGNAL("clicked()"), TabWidget.clickedSearch)
         QtCore.QObject.connect(self.button_DeleteRecipe, QtCore.SIGNAL("clicked()"), TabWidget.clickedDeleteRecipe)
         QtCore.QObject.connect(self.button_EditRecipe, QtCore.SIGNAL("clicked()"), TabWidget.clickedEditRecipe)
@@ -391,6 +415,8 @@ class Ui_TabWidget(object):
         QtCore.QObject.connect(self.button_AddChefToDB, QtCore.SIGNAL("clicked()"), TabWidget.clickedChefAddToDatabase)
         QtCore.QObject.connect(self.button_AddApplianceToDB, QtCore.SIGNAL("clicked()"), TabWidget.clickedApplianceAddToDatabase)
         QtCore.QObject.connect(self.button_AddIngredientToDB_2, QtCore.SIGNAL("clicked()"), TabWidget.clickedUnitAddToDatabase)
+        QtCore.QObject.connect(self.button_addIngredientView, QtCore.SIGNAL("clicked()"), TabWidget.clickedAddIngredientView)
+        QtCore.QObject.connect(self.combo_IngredientView, QtCore.SIGNAL("currentIndexChanged(int)"), TabWidget.changedIngredientView)
         QtCore.QMetaObject.connectSlotsByName(TabWidget)
 
     def retranslateUi(self, TabWidget):
@@ -417,7 +443,10 @@ class Ui_TabWidget(object):
         TabWidget.setTabText(TabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("TabWidget", "Search", None, QtGui.QApplication.UnicodeUTF8))
         self.label_viewing.setText(QtGui.QApplication.translate("TabWidget", "Viewing:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_Output.setText(QtGui.QApplication.translate("TabWidget", "Recipes:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_viewing_2.setText(QtGui.QApplication.translate("TabWidget", "Add Ingredient:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_viewing_2.setText(QtGui.QApplication.translate("TabWidget", "Add Ingredient to list:", None, QtGui.QApplication.UnicodeUTF8))
+        self.button_addIngredientView.setText(QtGui.QApplication.translate("TabWidget", "Add Ingredient", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_27.setText(QtGui.QApplication.translate("TabWidget", "Label/Note:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_measureUnitView.setText(QtGui.QApplication.translate("TabWidget", "Unit  NA", None, QtGui.QApplication.UnicodeUTF8))
         TabWidget.setTabText(TabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("TabWidget", "View", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("TabWidget", "Chef:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setText(QtGui.QApplication.translate("TabWidget", "Cook Time: ", None, QtGui.QApplication.UnicodeUTF8))

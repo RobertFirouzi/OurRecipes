@@ -3,7 +3,12 @@ from PySide.QtGui import *
 import display
 from recipe_model import *
 
-#TODO - add ingredients to a grocery list
+#TODO - alphabatize combo boxes and lists
+#TODO - package with PyInstaller
+#TODO - setup database with real items
+#TODO - cleaner look and output?
+#TODO = add pictures>
+#TODO - use PyLatex to generae clean pdf output?
 
 class MainWindow(QTabWidget, display.Ui_TabWidget):
     def __init__(self):
@@ -76,8 +81,10 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
 
         self.combo_IngredientTypeNewRecipe.clear()
+        self.combo_IngredientView.clear()
         for ingredient in self.currentIngredients:
             self.combo_IngredientTypeNewRecipe.addItem(ingredient)
+            self.combo_IngredientView.addItem(ingredient)
 
         self.combo_UnitNewIngredient.clear()
         for unit in self.currentMeasureUnits:
@@ -199,12 +206,87 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.loadRecipeForEdit()
 
     @Slot()
+    def changedIngredientView(self):
+        ingredient = self.currentIngredients[self.combo_IngredientView.currentText()]
+        self.label_measureUnitView.setText(ingredient.measureUnit.name)
+
+    @Slot()
     def clickedViewIngredients(self):
-        pass
+        viewRecipes = self.getSelectedRecipes()
+        if viewRecipes:
+            self.list_Viewing.clear()
+            self.text_output.clear()
+            for viewRecipe in viewRecipes:
+                nameWidget = QListWidgetItem()
+                nameWidget.setText(str(viewRecipe.name))
+                nameWidget.setFlags(Qt.ItemIsEnabled)
+                self.list_Viewing.addItem(nameWidget)
+
+                self.text_output.append('------ ' + str(viewRecipe.name) + ' ------')
+                for ingredient in viewRecipe.ingredients:
+                    self.text_output.append(str(ingredient.ingredientType.name) + ' - '
+                                            + str(ingredient.amount) + ' '
+                                            + str(ingredient.ingredientType.measureUnit.name))
+                self.text_output.append('')
+
+            self.text_output.append('------ ' + 'Additional Items' + ' ------')
+
+            self.setCurrentIndex(1)  # Switch the tab to the view tab
+            self.label_deleteOne.setText('')
+        else:
+            self.label_deleteOne.setText('Check box next to each recipe you\'d like to view')
 
     @Slot()
     def clickedViewRecipes(self):
-        pass
+        viewRecipes = self.getSelectedRecipes()
+
+        if viewRecipes:
+            self.list_Viewing.clear()
+            self.text_output.clear()
+            for viewRecipe in viewRecipes:
+                nameWidget = QListWidgetItem()
+                nameWidget.setText(str(viewRecipe.name))
+                nameWidget.setFlags(Qt.ItemIsEnabled)
+                self.list_Viewing.addItem(nameWidget)
+
+                self.text_output.append(str(viewRecipe.name))
+                self.text_output.append(str(viewRecipe.description))
+                self.text_output.append('')
+                self.text_output.append('Chef: ' + str(viewRecipe.chef.name))
+                self.text_output.append('Preptime: ' + str(viewRecipe.prepTime) + ' minutes')
+                self.text_output.append('Cooktime: ' + str(viewRecipe.cookTime) + ' minutes')
+                self.text_output.append('Servings: ' + str(viewRecipe.servings))
+                self.text_output.append('')
+                self.text_output.append('Ingredients:')
+                for ingredient in viewRecipe.ingredients:
+                    self.text_output.append(str(ingredient.ingredientType.name) + ' - '
+                                            + str(ingredient.amount) + ' '
+                                            + str(ingredient.ingredientType.measureUnit.name))
+
+                self.text_output.append('')
+                self.text_output.append('Steps:')
+                for step in viewRecipe.recipeSteps:
+                    self.text_output.append(str(step.stepNo) + ') ' + str(step.text))
+
+
+                self.text_output.append('\n---------------------------------\n')
+
+            self.setCurrentIndex(1)  # Switch the tab to the view tab
+            self.label_deleteOne.setText('')
+        else:
+            self.label_deleteOne.setText('Check box next to each recipe you\'d like to view')
+
+    @Slot()
+    def clickedAddIngredientView(self):
+        text = str(self.combo_IngredientView.currentText())
+        amt = str(self.double_AmountIngredientView.value())
+        unit =str(self.label_measureUnitView.text())
+        note = str(self.line_noteView.text())
+        if note == '':
+            self.text_output.append(text + ' - ' + amt + ' ' + unit)
+        else:
+            self.text_output.append(text + ' - ' + amt + ' ' + unit + ' *' + note)
+            self.line_noteView.setText('')
 
     @Slot()
     def clickedAddIngredient(self):
