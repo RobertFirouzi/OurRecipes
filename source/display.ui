@@ -1043,7 +1043,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>150</y>
+      <y>140</y>
       <width>31</width>
       <height>23</height>
      </rect>
@@ -1056,7 +1056,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>120</y>
+      <y>110</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -1069,7 +1069,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>140</y>
       <width>51</width>
       <height>20</height>
      </rect>
@@ -1082,7 +1082,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>150</y>
+      <y>140</y>
       <width>241</width>
       <height>20</height>
      </rect>
@@ -1137,7 +1137,7 @@
      <string>Name:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_chefAddToDB_2">
+   <widget class="QLineEdit" name="line_UnitAddToDB">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -1163,8 +1163,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>20</y>
+      <x>590</x>
+      <y>10</y>
       <width>191</width>
       <height>16</height>
      </rect>
@@ -1206,7 +1206,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>180</y>
+      <y>170</y>
       <width>281</width>
       <height>20</height>
      </rect>
@@ -1358,7 +1358,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>952</x>
-     <y>324</y>
+     <y>304</y>
     </hint>
     <hint type="destinationlabel">
      <x>1090</x>
@@ -1462,6 +1462,70 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>button_AddIngredientToDB</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedIngredientAddToDatabase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>540</x>
+     <y>-97</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AddChefToDB</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedChefAddToDatabase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>330</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-70</x>
+     <y>114</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AddApplianceToDB</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedApplianceAddToDatabase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>310</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-17</x>
+     <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AddIngredientToDB_2</sender>
+   <signal>clicked()</signal>
+   <receiver>TabWidget</receiver>
+   <slot>clickedUnitAddToDatabase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>808</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>950</x>
+     <y>-57</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>clickedSearch()</slot>
@@ -1478,5 +1542,8 @@
   <slot>clickedDiscard()</slot>
   <slot>changedIngrediantAdd()</slot>
   <slot>clickedInsertStep()</slot>
+  <slot>clickedChefAddToDatabase()</slot>
+  <slot>clickedApplianceAddToDatabase()</slot>
+  <slot>clickedUnitAddToDatabase()</slot>
  </slots>
 </ui>

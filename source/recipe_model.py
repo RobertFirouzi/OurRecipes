@@ -231,7 +231,6 @@ def isRecipeNameInDB(recipeName):
     else:
         return False
 
-
 def getChefTypesDict():
     chefDict = dict()
     chefRows = database.getAllChefTypes()
@@ -270,6 +269,22 @@ def getMeasureUnitsDict():
         measureDict[row[MEASURE_TYPE]] = MeasureUnit(row[MEASURE_ID], row[MEASURE_TYPE])
 
     return measureDict
+
+#String, chef name
+def addChefToDB(chef):
+    database.addChef('"' + chef + '"')
+
+#list [name, measureUnitId]
+def addIngredientTypeToDB(ingredient):
+    database.addIngredientType(['"' + ingredient[0] + '"', ingredient[1]])
+
+#string appliance name
+def addApplianceToDB(appliance):
+    database.addAppliance('"' + appliance + '"')
+
+#string unit name
+def addMeasureUnitToDB(measureUnit):
+    database.addMeasureUnit('"' + measureUnit +'"')
 
 
 if __name__ == '__main__':

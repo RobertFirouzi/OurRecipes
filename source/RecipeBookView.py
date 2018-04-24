@@ -3,9 +3,7 @@ from PySide.QtGui import *
 import display
 from recipe_model import *
 
-#TODO - Add types to database
 #TODO - add ingredients to a grocery list
-
 
 class MainWindow(QTabWidget, display.Ui_TabWidget):
     def __init__(self):
@@ -47,6 +45,8 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         self.table_AddedIngredients.setColumnWidth(2, 100)
 
     def refreshComboBoxes(self):
+        self.combo_Chef.clear()
+        self.combo_ChefNewRecipe.clear()
         for chef in self.currentChefs:
             self.combo_Chef.addItem(chef)
             self.combo_ChefNewRecipe.addItem(chef)
@@ -60,6 +60,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         if index >= 0:
             self.combo_ChefNewRecipe.setCurrentIndex(index)
 
+        self.combo_Appliance.clear()
         for appliance in self.currentAppliances:
             self.combo_Appliance.addItem(appliance)
             self.combo_ApplianceNewRecipe.addItem(appliance)
@@ -73,8 +74,18 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         if index >= 0:
             self.combo_ApplianceNewRecipe.setCurrentIndex(index)
 
+
+        self.combo_IngredientTypeNewRecipe.clear()
         for ingredient in self.currentIngredients:
             self.combo_IngredientTypeNewRecipe.addItem(ingredient)
+
+        self.combo_UnitNewIngredient.clear()
+        for unit in self.currentMeasureUnits:
+            self.combo_UnitNewIngredient.addItem(unit)
+
+        index = self.combo_UnitNewIngredient.findText('NA', Qt.MatchFixedString)
+        if index >= 0:
+            self.combo_UnitNewIngredient.setCurrentIndex(index)
 
     def refreshIngredientFilterList(self):
         self.table_IngredientsFilter.setRowCount(0)
@@ -218,7 +229,37 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
     @Slot()
     def clickedIngredientAddToDatabase(self):
-        pass
+        ingredientName = str(self.line_IngredientAddToDB.text())
+        measureID = self.currentMeasureUnits[self.combo_UnitNewIngredient.currentText()]
+        addIngredientTypeToDB([ingredientName,measureID.id])
+        self.currentIngredients = getIngredientTypesDict()
+        self.refreshComboBoxes()
+        self.line_IngredientAddToDB.setText('')
+        self.refreshIngredientFilterList()
+
+    @Slot()
+    def clickedApplianceAddToDatabase(self):
+        applianceName = str(self.line_applianceAddToDB.text())
+        addApplianceToDB(applianceName)
+        self.currentAppliances = getApplianceTypesDict()
+        self.refreshComboBoxes()
+        self.line_applianceAddToDB.setText('')
+
+    @Slot()
+    def clickedChefAddToDatabase(self):
+        chefName = str(self.line_chefAddToDB.text())
+        addChefToDB(chefName)
+        self.currentChefs = getChefTypesDict()
+        self.refreshComboBoxes()
+        self.line_chefAddToDB.setText('')
+
+    @Slot()
+    def clickedUnitAddToDatabase(self):
+        unitName = str(self.line_UnitAddToDB.text())
+        addMeasureUnitToDB(unitName)
+        self.currentMeasureUnits = getMeasureUnitsDict()
+        self.refreshComboBoxes()
+        self.line_UnitAddToDB.setText('')
 
     @Slot()
     def clickedRemoveIngredient(self):

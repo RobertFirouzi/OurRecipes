@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\Users\Robert\Repos\OurRecipes\source\display.ui'
 #
-# Created: Sun Apr 22 23:04:17 2018
+# Created: Mon Apr 23 22:24:18 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -315,16 +315,16 @@ class Ui_TabWidget(object):
         self.label_19.setGeometry(QtCore.QRect(10, 40, 51, 20))
         self.label_19.setObjectName("label_19")
         self.button_AddChefToDB = QtGui.QPushButton(self.tab_4)
-        self.button_AddChefToDB.setGeometry(QtCore.QRect(310, 150, 31, 23))
+        self.button_AddChefToDB.setGeometry(QtCore.QRect(310, 140, 31, 23))
         self.button_AddChefToDB.setObjectName("button_AddChefToDB")
         self.label_20 = QtGui.QLabel(self.tab_4)
-        self.label_20.setGeometry(QtCore.QRect(60, 120, 141, 20))
+        self.label_20.setGeometry(QtCore.QRect(60, 110, 141, 20))
         self.label_20.setObjectName("label_20")
         self.label_21 = QtGui.QLabel(self.tab_4)
-        self.label_21.setGeometry(QtCore.QRect(10, 150, 51, 20))
+        self.label_21.setGeometry(QtCore.QRect(10, 140, 51, 20))
         self.label_21.setObjectName("label_21")
         self.line_chefAddToDB = QtGui.QLineEdit(self.tab_4)
-        self.line_chefAddToDB.setGeometry(QtCore.QRect(50, 150, 241, 20))
+        self.line_chefAddToDB.setGeometry(QtCore.QRect(50, 140, 241, 20))
         self.line_chefAddToDB.setObjectName("line_chefAddToDB")
         self.button_AddApplianceToDB = QtGui.QPushButton(self.tab_4)
         self.button_AddApplianceToDB.setGeometry(QtCore.QRect(310, 270, 31, 23))
@@ -338,14 +338,14 @@ class Ui_TabWidget(object):
         self.label_23 = QtGui.QLabel(self.tab_4)
         self.label_23.setGeometry(QtCore.QRect(10, 270, 51, 20))
         self.label_23.setObjectName("label_23")
-        self.line_chefAddToDB_2 = QtGui.QLineEdit(self.tab_4)
-        self.line_chefAddToDB_2.setGeometry(QtCore.QRect(600, 40, 171, 20))
-        self.line_chefAddToDB_2.setObjectName("line_chefAddToDB_2")
+        self.line_UnitAddToDB = QtGui.QLineEdit(self.tab_4)
+        self.line_UnitAddToDB.setGeometry(QtCore.QRect(600, 40, 171, 20))
+        self.line_UnitAddToDB.setObjectName("line_UnitAddToDB")
         self.label_26 = QtGui.QLabel(self.tab_4)
         self.label_26.setGeometry(QtCore.QRect(560, 40, 51, 20))
         self.label_26.setObjectName("label_26")
         self.label_7 = QtGui.QLabel(self.tab_4)
-        self.label_7.setGeometry(QtCore.QRect(620, 20, 191, 16))
+        self.label_7.setGeometry(QtCore.QRect(590, 10, 191, 16))
         self.label_7.setObjectName("label_7")
         self.button_AddIngredientToDB_2 = QtGui.QPushButton(self.tab_4)
         self.button_AddIngredientToDB_2.setGeometry(QtCore.QRect(790, 40, 31, 23))
@@ -356,7 +356,7 @@ class Ui_TabWidget(object):
         self.label_ingredientError.setText("")
         self.label_ingredientError.setObjectName("label_ingredientError")
         self.label_chefError = QtGui.QLabel(self.tab_4)
-        self.label_chefError.setGeometry(QtCore.QRect(50, 180, 281, 20))
+        self.label_chefError.setGeometry(QtCore.QRect(50, 170, 281, 20))
         self.label_chefError.setStyleSheet("color: rgb(255, 0, 0);")
         self.label_chefError.setText("")
         self.label_chefError.setObjectName("label_chefError")
@@ -387,6 +387,10 @@ class Ui_TabWidget(object):
         QtCore.QObject.connect(self.button_Discard, QtCore.SIGNAL("clicked()"), TabWidget.clickedDiscard)
         QtCore.QObject.connect(self.combo_IngredientTypeNewRecipe, QtCore.SIGNAL("currentIndexChanged(int)"), TabWidget.changedIngrediantAdd)
         QtCore.QObject.connect(self.button_InsertStep, QtCore.SIGNAL("clicked()"), TabWidget.clickedInsertStep)
+        QtCore.QObject.connect(self.button_AddIngredientToDB, QtCore.SIGNAL("clicked()"), TabWidget.clickedIngredientAddToDatabase)
+        QtCore.QObject.connect(self.button_AddChefToDB, QtCore.SIGNAL("clicked()"), TabWidget.clickedChefAddToDatabase)
+        QtCore.QObject.connect(self.button_AddApplianceToDB, QtCore.SIGNAL("clicked()"), TabWidget.clickedApplianceAddToDatabase)
+        QtCore.QObject.connect(self.button_AddIngredientToDB_2, QtCore.SIGNAL("clicked()"), TabWidget.clickedUnitAddToDatabase)
         QtCore.QMetaObject.connectSlotsByName(TabWidget)
 
     def retranslateUi(self, TabWidget):

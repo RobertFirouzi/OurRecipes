@@ -251,27 +251,40 @@ def addRecipe(recipe):
              + str(recipe[6])
     addRow('Recipes', columns , values)
 
-def addRecipeStep(step): #TODO
+def addRecipeStep(step):
     columns = 'recipeId,stepNumber,text'
     values = str(step[0]) + ',' \
              + str(step[1])  + ',' \
              + str(step[2])
     addRow('Steps', columns , values)
 
-def addIngredient(ingredient): #TODO
+def addIngredient(ingredient):
     columns = 'recipeId,ingredientType,amount'
     values = str(ingredient[0]) + ',' \
              + str(ingredient[1])  + ',' \
              + str(ingredient[2])
     addRow('Ingredients', columns , values)
 
-def addIngredientType(ingredientType): #TODO
-    columns = 'name,unitType,unit'
+def addIngredientType(ingredientType):
+    columns = 'name,unit'
     values = str(ingredientType[0]) + ',' \
-             + str(ingredientType[1])  + ',' \
-             + str(ingredientType[2])
+             + str(ingredientType[1])
     addRow('IngredientTypes', columns , values)
 
+def addChef(chef):
+    columns = 'type'
+    values = str(chef)
+    addRow('ChefTypes', columns , values)
+
+def addAppliance(appliance):
+    columns = 'type'
+    values = str(appliance)
+    addRow('ApplianceTypes', columns , values)
+
+def addMeasureUnit(measureUnit):
+    columns = 'type'
+    values = str(measureUnit)
+    addRow('MeasurementUnits', columns , values)
 
 
 if __name__ == '__main__':
