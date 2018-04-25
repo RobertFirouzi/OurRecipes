@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\Users\Robert\Repos\OurRecipes\source\display.ui'
 #
-# Created: Mon Apr 23 22:59:56 2018
+# Created: Tue Apr 24 22:49:27 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -167,7 +167,7 @@ class Ui_TabWidget(object):
         self.label_27.setGeometry(QtCore.QRect(30, 350, 91, 20))
         self.label_27.setObjectName("label_27")
         self.label_measureUnitView = QtGui.QLabel(self.tab_3)
-        self.label_measureUnitView.setGeometry(QtCore.QRect(280, 380, 51, 20))
+        self.label_measureUnitView.setGeometry(QtCore.QRect(270, 380, 51, 20))
         self.label_measureUnitView.setObjectName("label_measureUnitView")
         self.line_noteView = QtGui.QLineEdit(self.tab_3)
         self.line_noteView.setGeometry(QtCore.QRect(100, 350, 261, 20))

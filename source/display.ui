@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>1</number>
+   <number>0</number>
   </property>
   <widget class="QWidget" name="tab_2">
    <attribute name="title">
@@ -520,7 +520,7 @@
    <widget class="QLabel" name="label_measureUnitView">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>270</x>
       <y>380</y>
       <width>51</width>
       <height>20</height>
@@ -1660,5 +1660,6 @@
   <slot>clickedUnitAddToDatabase()</slot>
   <slot>clickedAddIngredientView()</slot>
   <slot>changedIngredientView()</slot>
+  <slot>clickedTableRecipe()</slot>
  </slots>
 </ui>

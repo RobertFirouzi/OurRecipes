@@ -3,7 +3,6 @@ from PySide.QtGui import *
 import display
 from recipe_model import *
 
-#TODO - alphabatize combo boxes and lists
 #TODO - package with PyInstaller
 #TODO - setup database with real items
 #TODO - cleaner look and output?
@@ -17,6 +16,8 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         QApplication.setStyle(QStyleFactory.create("Plastique"))
 
         self.editingRecipe = None #If editing a recipe, reference here
+        self.sortRecipeColumn = 1
+        self.isSortAscending = True
 
         self.recipeBook = RecipeBookModel()
         self.recipeBook.loadRecipes()
@@ -35,24 +36,49 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
         self.show()
 
+    @Slot()
+    def clickedTableRecipe(self, col):
+        if col > 0:
+            if col == self.sortRecipeColumn:
+                self.isSortAscending = not self.isSortAscending
+            self.sortRecipeColumn = col
+            self.sortRecipeTable()
+
+    def sortRecipeTable(self):
+        if self.isSortAscending:
+            self.table_Recipes.sortItems(self.sortRecipeColumn, order = Qt.AscendingOrder)
+        else:
+            self.table_Recipes.sortItems(self.sortRecipeColumn, order = Qt.DescendingOrder)
+
     def setupTables(self):
-        self.table_Recipes.setColumnWidth(0, 25)
+        self.table_Recipes.setColumnWidth(0, 24)
         self.table_Recipes.setColumnWidth(1, 275)
         self.table_Recipes.setColumnWidth(2, 110)
         self.table_Recipes.setColumnWidth(3, 110)
         self.table_Recipes.setColumnWidth(4, 62)
         self.table_Recipes.setColumnWidth(5, 62)
-        self.table_Recipes.setColumnWidth(5, 62)
-        self.table_Recipes.setColumnWidth(6, 62)
+        self.table_Recipes.setColumnWidth(5, 60)
+        self.table_Recipes.setColumnWidth(6, 61)
 
         self.table_AddedIngredients.setColumnWidth(0,250)
         self.table_AddedIngredients.setColumnWidth(1, 55)
         self.table_AddedIngredients.setColumnWidth(2, 100)
 
+        self.table_Recipes.horizontalHeader().sectionClicked.connect(self.clickedTableRecipe)
+
     def refreshComboBoxes(self):
         self.combo_Chef.clear()
         self.combo_ChefNewRecipe.clear()
+        chefList = list()
         for chef in self.currentChefs:
+            chefList.append(chef)
+
+        chefList = sorted(chefList, key = str.lower)
+        try:
+            chefList.insert(0, chefList.pop(chefList.index('NA')))
+        except:
+            pass
+        for chef in chefList:
             self.combo_Chef.addItem(chef)
             self.combo_ChefNewRecipe.addItem(chef)
 
@@ -66,7 +92,16 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.combo_ChefNewRecipe.setCurrentIndex(index)
 
         self.combo_Appliance.clear()
+        applianceList = list()
         for appliance in self.currentAppliances:
+            applianceList.append(appliance)
+
+        applianceList = sorted(applianceList, key = str.lower)
+        try:
+            applianceList.insert(0, applianceList.pop(applianceList.index('NA')))
+        except:
+            pass
+        for appliance in applianceList:
             self.combo_Appliance.addItem(appliance)
             self.combo_ApplianceNewRecipe.addItem(appliance)
 
@@ -79,15 +114,32 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         if index >= 0:
             self.combo_ApplianceNewRecipe.setCurrentIndex(index)
 
-
         self.combo_IngredientTypeNewRecipe.clear()
         self.combo_IngredientView.clear()
+        ingredientList = list()
         for ingredient in self.currentIngredients:
+            ingredientList.append(ingredient)
+
+        ingredientList = sorted(ingredientList, key = str.lower)
+        try:
+            ingredientList.insert(0, ingredientList.pop(ingredientList.index('NA')))
+        except:
+            pass
+        for ingredient in ingredientList:
             self.combo_IngredientTypeNewRecipe.addItem(ingredient)
             self.combo_IngredientView.addItem(ingredient)
 
         self.combo_UnitNewIngredient.clear()
+        unitList = list()
         for unit in self.currentMeasureUnits:
+            unitList.append(unit)
+
+        unitList = sorted(unitList, key = str.lower)
+        try:
+            unitList.insert(0, unitList.pop(unitList.index('NA')))
+        except:
+            pass
+        for unit in unitList:
             self.combo_UnitNewIngredient.addItem(unit)
 
         index = self.combo_UnitNewIngredient.findText('NA', Qt.MatchFixedString)
@@ -97,7 +149,13 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
     def refreshIngredientFilterList(self):
         self.table_IngredientsFilter.setRowCount(0)
 
+        ingredientList = list()
         for ingredient in self.currentIngredients:
+            ingredientList.append(ingredient)
+
+        ingredientList = sorted(ingredientList, key = str.lower)
+        ingredientList.reverse()
+        for ingredient in ingredientList:
             self.table_IngredientsFilter.insertRow(0)
 
             itemName = QTableWidgetItem()
@@ -110,7 +168,6 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.table_IngredientsFilter.setCellWidget(0, 1, checkBoxSelect)
 
     def updateRecipesView(self):
-        #self.table_Recipes
         self.table_Recipes.setRowCount(0)
         for recipeName, recipe in self.currentRecipes.items():
             self.table_Recipes.insertRow(0)
@@ -135,19 +192,21 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.table_Recipes.setItem(0, 3, itemAppl)
             #Prep
             itemPrep = QTableWidgetItem()
-            itemPrep.setText(str(recipe.prepTime))
             itemPrep.setFlags(Qt.ItemIsEnabled)
+            itemPrep.setData(Qt.DisplayRole,recipe.prepTime)
             self.table_Recipes.setItem(0, 4, itemPrep)
             #Cook
             itemCook = QTableWidgetItem()
-            itemCook.setText(str(recipe.cookTime))
+            itemCook.setData(Qt.DisplayRole,recipe.cookTime)
             itemCook.setFlags(Qt.ItemIsEnabled)
             self.table_Recipes.setItem(0, 5, itemCook)
             #Servings
             itemServe = QTableWidgetItem()
-            itemServe.setText(str(recipe.servings))
+            itemServe.setData(Qt.DisplayRole,recipe.servings)
             itemServe.setFlags(Qt.ItemIsEnabled)
             self.table_Recipes.setItem(0, 6, itemServe)
+
+        self.sortRecipeTable()
 
 
     @Slot()
