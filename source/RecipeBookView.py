@@ -3,6 +3,9 @@ from PySide.QtGui import *
 import display
 from recipe_model import *
 
+#TODO - ingredient unit per ingredient not part of type
+#TODO - filter ingredients exclusive or inclusive
+#TODO - only refresh necessary combo boxes
 #TODO - package with PyInstaller
 #TODO - setup database with real items
 #TODO - cleaner look and output?
@@ -29,7 +32,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         self.currentIngredients = getIngredientTypesDict()
         self.currentMeasureUnits = getMeasureUnitsDict()
 
-        self.refreshComboBoxes()
+        self.refreshAllComboBoxes()
         self.refreshIngredientFilterList()
 
         self.setupTables()
@@ -66,7 +69,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
         self.table_Recipes.horizontalHeader().sectionClicked.connect(self.clickedTableRecipe)
 
-    def refreshComboBoxes(self):
+    def refreshChefComboBoxes(self):
         self.combo_Chef.clear()
         self.combo_ChefNewRecipe.clear()
         chefList = list()
@@ -91,7 +94,9 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         if index >= 0:
             self.combo_ChefNewRecipe.setCurrentIndex(index)
 
+    def refreshApplianceComboBoxes(self):
         self.combo_Appliance.clear()
+        self.combo_ApplianceNewRecipe.clear()
         applianceList = list()
         for appliance in self.currentAppliances:
             applianceList.append(appliance)
@@ -114,6 +119,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         if index >= 0:
             self.combo_ApplianceNewRecipe.setCurrentIndex(index)
 
+    def refreshIngredientComboBoxes(self):
         self.combo_IngredientTypeNewRecipe.clear()
         self.combo_IngredientView.clear()
         ingredientList = list()
@@ -129,7 +135,10 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.combo_IngredientTypeNewRecipe.addItem(ingredient)
             self.combo_IngredientView.addItem(ingredient)
 
-        self.combo_UnitNewIngredient.clear()
+    def refreshUnitComboBoxes(self):
+        self.combo_AddUnitView.clear()
+        self.combo_createUnit.clear()
+
         unitList = list()
         for unit in self.currentMeasureUnits:
             unitList.append(unit)
@@ -140,11 +149,23 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         except:
             pass
         for unit in unitList:
-            self.combo_UnitNewIngredient.addItem(unit)
+            self.combo_AddUnitView.addItem(unit)
+            self.combo_createUnit.addItem(unit)
 
-        index = self.combo_UnitNewIngredient.findText('NA', Qt.MatchFixedString)
+        index = self.combo_AddUnitView.findText('NA', Qt.MatchFixedString)
         if index >= 0:
-            self.combo_UnitNewIngredient.setCurrentIndex(index)
+            self.combo_AddUnitView.setCurrentIndex(index)
+
+        index = self.combo_createUnit.findText('NA', Qt.MatchFixedString)
+        if index >= 0:
+            self.combo_createUnit.setCurrentIndex(index)
+
+    def refreshAllComboBoxes(self):
+        self.refreshChefComboBoxes()
+        self.refreshApplianceComboBoxes()
+        self.refreshIngredientComboBoxes()
+        self.refreshUnitComboBoxes()
+
 
     def refreshIngredientFilterList(self):
         self.table_IngredientsFilter.setRowCount(0)
@@ -374,7 +395,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         measureID = self.currentMeasureUnits[self.combo_UnitNewIngredient.currentText()]
         addIngredientTypeToDB([ingredientName,measureID.id])
         self.currentIngredients = getIngredientTypesDict()
-        self.refreshComboBoxes()
+        self.refreshIngredientComboBoxes()
         self.line_IngredientAddToDB.setText('')
         self.refreshIngredientFilterList()
 
@@ -383,7 +404,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         applianceName = str(self.line_applianceAddToDB.text())
         addApplianceToDB(applianceName)
         self.currentAppliances = getApplianceTypesDict()
-        self.refreshComboBoxes()
+        self.refreshApplianceComboBoxes()
         self.line_applianceAddToDB.setText('')
 
     @Slot()
@@ -391,7 +412,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         chefName = str(self.line_chefAddToDB.text())
         addChefToDB(chefName)
         self.currentChefs = getChefTypesDict()
-        self.refreshComboBoxes()
+        self.refreshChefComboBoxes()
         self.line_chefAddToDB.setText('')
 
     @Slot()
@@ -399,7 +420,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         unitName = str(self.line_UnitAddToDB.text())
         addMeasureUnitToDB(unitName)
         self.currentMeasureUnits = getMeasureUnitsDict()
-        self.refreshComboBoxes()
+        self.refreshUnitComboBoxes()
         self.line_UnitAddToDB.setText('')
 
     @Slot()

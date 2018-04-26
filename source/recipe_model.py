@@ -288,37 +288,6 @@ def addMeasureUnitToDB(measureUnit):
 
 
 if __name__ == '__main__':
-    recipeBook = RecipeBookModel()
-    recipeBook.loadRecipes()
-    recipes = recipeBook.getRecipesDict(RecipeFilter())
-
-    print(getIngredientTypesDict())
-
-
-    # filter1 = RecipeFilter(ChefEnum.NA,
-    #                        ApplianceEnum.NA,
-    #                        (0,9999),
-    #                        (0,9999),
-    #                        (0,9999),
-    #                        tuple())
-    #
-    # filter2 = RecipeFilter()
-    # filter3 = RecipeFilter(ChefEnum.ASHLEY)
-    # filter4 = RecipeFilter(ChefEnum.ROBERT)
-    # filter5 = RecipeFilter(applianceEnum=ApplianceEnum.GRILL)
-    # filter6 = RecipeFilter(ChefEnum.ASHLEY, applianceEnum=ApplianceEnum.GRILL)
-    #
-    # search1 = recipeBook.getRecipes(filter1)
-    # search2 = recipeBook.getRecipes(filter2)
-    # search3 = recipeBook.getRecipes(filter3)
-    # search4 = recipeBook.getRecipes(filter4)
-    # search5 = recipeBook.getRecipes(filter5)
-    # search6 = recipeBook.getRecipes(filter6)
-    #
-    # ingredientTypes = (1,4,)
-    # filter7 = RecipeFilter(ingredientsTypes=ingredientTypes)
-    # search7 = recipeBook.getRecipes(filter7)
-
-    print('complete')
+    pass
 
 

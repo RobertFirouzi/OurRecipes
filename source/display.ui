@@ -221,7 +221,7 @@
      </font>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>250</number>
+     <number>230</number>
     </attribute>
     <attribute name="horizontalHeaderMinimumSectionSize">
      <number>5</number>
@@ -275,10 +275,10 @@
    <widget class="QPushButton" name="button_Search">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>580</y>
-      <width>71</width>
-      <height>23</height>
+      <x>230</x>
+      <y>582</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -395,6 +395,19 @@
      <string/>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>580</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ingredient List Inclusive</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="tab_3">
    <attribute name="title">
@@ -468,7 +481,7 @@
    <widget class="QPushButton" name="button_addIngredientView">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>270</x>
       <y>420</y>
       <width>91</width>
       <height>23</height>
@@ -493,7 +506,7 @@
      <rect>
       <x>30</x>
       <y>420</y>
-      <width>81</width>
+      <width>61</width>
       <height>22</height>
      </rect>
     </property>
@@ -537,6 +550,16 @@
       <y>350</y>
       <width>261</width>
       <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_AddUnitView">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>420</y>
+      <width>161</width>
+      <height>22</height>
      </rect>
     </property>
    </widget>
@@ -736,7 +759,7 @@
      <rect>
       <x>530</x>
       <y>20</y>
-      <width>231</width>
+      <width>251</width>
       <height>22</height>
      </rect>
     </property>
@@ -832,8 +855,8 @@
    <widget class="QDoubleSpinBox" name="double_AmountNewRecipe">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>20</y>
+      <x>530</x>
+      <y>50</y>
       <width>81</width>
       <height>22</height>
      </rect>
@@ -848,11 +871,16 @@
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>50</y>
+      <x>790</x>
+      <y>30</y>
       <width>91</width>
-      <height>23</height>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Add Ingredient</string>
@@ -953,19 +981,6 @@
      <string>(No changes to recipe book, start a fresh recipe)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_measureUnit">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>20</y>
-      <width>51</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit  NA</string>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="spin_removeIngredient">
     <property name="geometry">
      <rect>
@@ -1043,6 +1058,16 @@
      <number>999</number>
     </property>
    </widget>
+   <widget class="QComboBox" name="combo_createUnit">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>50</y>
+      <width>161</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="tab_4">
    <attribute name="title">
@@ -1061,16 +1086,6 @@
      <string>Add Ingredient Type To Database</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="combo_UnitNewIngredient">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>40</y>
-      <width>131</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="line_IngredientAddToDB">
     <property name="geometry">
      <rect>
@@ -1084,7 +1099,7 @@
    <widget class="QPushButton" name="button_AddIngredientToDB">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>310</x>
       <y>40</y>
       <width>31</width>
       <height>23</height>
@@ -1092,19 +1107,6 @@
     </property>
     <property name="text">
      <string>Add</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>40</y>
-      <width>31</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_19">
@@ -1221,9 +1223,9 @@
    <widget class="QLineEdit" name="line_UnitAddToDB">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>40</y>
-      <width>171</width>
+      <x>50</x>
+      <y>390</y>
+      <width>241</width>
       <height>20</height>
      </rect>
     </property>
@@ -1231,8 +1233,8 @@
    <widget class="QLabel" name="label_26">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>40</y>
+      <x>10</x>
+      <y>390</y>
       <width>51</width>
       <height>20</height>
      </rect>
@@ -1244,8 +1246,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>10</y>
+      <x>50</x>
+      <y>360</y>
       <width>191</width>
       <height>16</height>
      </rect>
@@ -1257,8 +1259,8 @@
    <widget class="QPushButton" name="button_AddIngredientToDB_2">
     <property name="geometry">
      <rect>
-      <x>790</x>
-      <y>40</y>
+      <x>310</x>
+      <y>390</y>
       <width>31</width>
       <height>23</height>
      </rect>
@@ -1318,8 +1320,8 @@
    <widget class="QLabel" name="label_unitError">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>70</y>
+      <x>20</x>
+      <y>420</y>
       <width>281</width>
       <height>20</height>
      </rect>
@@ -1422,8 +1424,8 @@
    <slot>clickedAddIngredient()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>795</x>
-     <y>94</y>
+     <x>825</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>406</x>
@@ -1512,22 +1514,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>combo_IngredientTypeNewRecipe</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>TabWidget</receiver>
-   <slot>changedIngrediantAdd()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>636</x>
-     <y>52</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>630</x>
-     <y>-79</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>button_InsertStep</sender>
    <signal>clicked()</signal>
    <receiver>TabWidget</receiver>
@@ -1550,7 +1536,7 @@
    <slot>clickedIngredientAddToDatabase()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>488</x>
+     <x>328</x>
      <y>66</y>
     </hint>
     <hint type="destinationlabel">
@@ -1598,44 +1584,12 @@
    <slot>clickedUnitAddToDatabase()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>808</x>
-     <y>72</y>
+     <x>328</x>
+     <y>422</y>
     </hint>
     <hint type="destinationlabel">
      <x>950</x>
      <y>-57</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_addIngredientView</sender>
-   <signal>clicked()</signal>
-   <receiver>TabWidget</receiver>
-   <slot>clickedAddIngredientView()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>164</x>
-     <y>451</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>209</x>
-     <y>763</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>combo_IngredientView</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>TabWidget</receiver>
-   <slot>changedIngredientView()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>230</x>
-     <y>411</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>200</x>
-     <y>706</y>
     </hint>
    </hints>
   </connection>
@@ -1659,7 +1613,6 @@
   <slot>clickedApplianceAddToDatabase()</slot>
   <slot>clickedUnitAddToDatabase()</slot>
   <slot>clickedAddIngredientView()</slot>
-  <slot>changedIngredientView()</slot>
   <slot>clickedTableRecipe()</slot>
  </slots>
 </ui>

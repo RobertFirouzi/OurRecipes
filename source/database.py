@@ -289,13 +289,3 @@ def addMeasureUnit(measureUnit):
 
 if __name__ == '__main__':
     pass
-    # ingType = ['"Onion"', '4', '1']
-    # addIngredientType(ingType)
-    # ing = ['1' , '3' , '1']
-    # addIngredient(ing)
-    # recipe = ['"testAddTacos"', '"a descript for a test add"', '2', '3', '10', '10' , '5']
-    # addRecipe(recipe)
-    # step = [3,3,'"fry the meat"']
-    # addRecipeStep(step)
-    # ing = ['3' , '3' , '1']
-    # addIngredient(ing)
