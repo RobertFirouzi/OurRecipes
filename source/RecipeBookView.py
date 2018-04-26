@@ -3,9 +3,10 @@ from PySide.QtGui import *
 import display
 from recipe_model import *
 
-#TODO - ingredient unit per ingredient not part of type
 #TODO - filter ingredients exclusive or inclusive
-#TODO - only refresh necessary combo boxes
+#TODO - update combo box refresh calls to new methods
+#TODO - when add unit or ingredient to database, refresh current ingredients table?
+#TODO - Allow update unit, ingredient, appliance and chef name
 #TODO - package with PyInstaller
 #TODO - setup database with real items
 #TODO - cleaner look and output?
@@ -166,6 +167,25 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         self.refreshIngredientComboBoxes()
         self.refreshUnitComboBoxes()
 
+    def loadComboBox(self, comboBox, namesDict):
+        comboBox.clear()
+        nameList = list()
+        for name in namesDict:
+            nameList.append(name)
+
+        nameList = sorted(nameList, key = str.lower)
+        try:
+            nameList.insert(0, nameList.pop(nameList.index('NA')))
+        except:
+            pass
+        for name in nameList:
+            comboBox.addItem(name)
+
+    def setComboToText(self, comboBox, text):
+        index = comboBox.findText(text, Qt.MatchFixedString)
+        if index >= 0:
+            comboBox.setCurrentIndex(index)
+
 
     def refreshIngredientFilterList(self):
         self.table_IngredientsFilter.setRowCount(0)
@@ -306,7 +326,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
                 for ingredient in viewRecipe.ingredients:
                     self.text_output.append(str(ingredient.ingredientType.name) + ' - '
                                             + str(ingredient.amount) + ' '
-                                            + str(ingredient.ingredientType.measureUnit.name))
+                                            + str(ingredient.unit.name))
                 self.text_output.append('')
 
             self.text_output.append('------ ' + 'Additional Items' + ' ------')
@@ -341,7 +361,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
                 for ingredient in viewRecipe.ingredients:
                     self.text_output.append(str(ingredient.ingredientType.name) + ' - '
                                             + str(ingredient.amount) + ' '
-                                            + str(ingredient.ingredientType.measureUnit.name))
+                                            + str(ingredient.unit.name))
 
                 self.text_output.append('')
                 self.text_output.append('Steps:')
@@ -357,10 +377,10 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.label_deleteOne.setText('Check box next to each recipe you\'d like to view')
 
     @Slot()
-    def clickedAddIngredientView(self):
+    def clickedAddIngredientToListView(self):
         text = str(self.combo_IngredientView.currentText())
         amt = str(self.double_AmountIngredientView.value())
-        unit =str(self.label_measureUnitView.text())
+        unit =str(self.combo_AddUnitView.currentText())
         note = str(self.line_noteView.text())
         if note == '':
             self.text_output.append(text + ' - ' + amt + ' ' + unit)
@@ -370,30 +390,27 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
     @Slot()
     def clickedAddIngredient(self):
-        ingredientType = self.currentIngredients[self.combo_IngredientTypeNewRecipe.currentText()]
-
         self.table_AddedIngredients.insertRow(0)
 
-        itemName = QTableWidgetItem()
-        itemName.setText(str(ingredientType.name))
-        itemName.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
-        self.table_AddedIngredients.setItem(0, 0, itemName)
+        nameBoxUnit = QComboBox()
+        self.loadComboBox(nameBoxUnit, self.currentIngredients)
+        self.table_AddedIngredients.setCellWidget(0, 0, nameBoxUnit)
+        self.setComboToText(nameBoxUnit, self.combo_IngredientTypeNewRecipe.currentText())
 
         itemAmount = QTableWidgetItem()
         itemAmount.setText(str(self.double_AmountNewRecipe.value()))
-        itemAmount.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
         self.table_AddedIngredients.setItem(0, 1, itemAmount)
 
-        unitType = QTableWidgetItem()
-        unitType.setText(str(ingredientType.measureUnit.name))
-        unitType.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
-        self.table_AddedIngredients.setItem(0, 2, unitType)
+        comboBoxUnit = QComboBox()
+        self.loadComboBox(comboBoxUnit, self.currentMeasureUnits)
+        self.table_AddedIngredients.setCellWidget(0, 2, comboBoxUnit)
+        self.setComboToText(comboBoxUnit, self.combo_createUnit.currentText())
+
 
     @Slot()
     def clickedIngredientAddToDatabase(self):
         ingredientName = str(self.line_IngredientAddToDB.text())
-        measureID = self.currentMeasureUnits[self.combo_UnitNewIngredient.currentText()]
-        addIngredientTypeToDB([ingredientName,measureID.id])
+        addIngredientTypeToDB(ingredientName)
         self.currentIngredients = getIngredientTypesDict()
         self.refreshIngredientComboBoxes()
         self.line_IngredientAddToDB.setText('')
@@ -438,7 +455,6 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
         item = QTableWidgetItem()
         item.setText(text)
-        item.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
         self.table_CurrentSteps.setItem(tableSize, 0, item)
 
     @Slot()
@@ -475,10 +491,18 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
 
         ingredients = list()
         for i in range(self.table_AddedIngredients.rowCount()):
-            ingtype = self.table_AddedIngredients.item(i, 0).text()
+            comboBoxIng = self.table_AddedIngredients.cellWidget(i, 0)
+            ingtype = comboBoxIng.currentText()
             ingredientType = self.currentIngredients[ingtype]
-            amount = float(self.table_AddedIngredients.item(i, 1).text())
-            ingredients.append(Ingredient(0,ingredientType,amount))
+            try:
+                amount = float(self.table_AddedIngredients.item(i, 1).text())
+                self.label_amtError.setText('')
+            except:
+                self.label_amtError.setText('all "Amount" entries must be numbers')
+                return
+            comboBoxUnit = self.table_AddedIngredients.cellWidget(i, 2)
+            measType = self.currentMeasureUnits[comboBoxUnit.currentText()]
+            ingredients.append(Ingredient(0,ingredientType,amount,measType))
 
         steps = list()
         for i in range(self.table_CurrentSteps.rowCount()):
@@ -517,6 +541,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         self.line_NameNewRecipe.setText(self.editingRecipe.name)
         self.text_DescriptionNewRecipe.setText(str(self.editingRecipe.description))
         self.label_uniqueName.setText('')
+        self.label_amtError.setText('')
 
         index = self.combo_ChefNewRecipe.findText(self.editingRecipe.chef.name, Qt.MatchFixedString)
         if index >= 0:
@@ -542,20 +567,20 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         ingredientCount = 0
         for ingredient in self.editingRecipe.ingredients:
             self.table_AddedIngredients.insertRow(ingredientCount)
-            itemName = QTableWidgetItem()
-            itemName.setText(ingredient.ingredientType.name)
-            itemName.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
-            self.table_AddedIngredients.setItem(ingredientCount, 0, itemName)
+
+            nameBoxIng = QComboBox()
+            self.loadComboBox(nameBoxIng, self.currentIngredients)
+            self.table_AddedIngredients.setCellWidget(ingredientCount, 0, nameBoxIng)
+            self.setComboToText(nameBoxIng, ingredient.ingredientType.name)
 
             itemAmount = QTableWidgetItem()
             itemAmount.setText(str(ingredient.amount))
-            itemAmount.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
             self.table_AddedIngredients.setItem(ingredientCount, 1, itemAmount)
 
-            unitType = QTableWidgetItem()
-            unitType.setText(ingredient.ingredientType.measureUnit.name)
-            unitType.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
-            self.table_AddedIngredients.setItem(ingredientCount, 2, unitType)
+            nameBoxUnit = QComboBox()
+            self.loadComboBox(nameBoxUnit, self.currentMeasureUnits)
+            self.table_AddedIngredients.setCellWidget(ingredientCount, 2, nameBoxUnit)
+            self.setComboToText(nameBoxUnit, ingredient.unit.name)
 
             ingredientCount +=1
 
@@ -564,7 +589,6 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
             self.table_CurrentSteps.insertRow(stepCount)
             item = QTableWidgetItem()
             item.setText(str(step.text))
-            item.setFlags(Qt.ItemIsEnabled)  # makes the column not modifiable
             self.table_CurrentSteps.setItem(stepCount, 0, item)
             stepCount+=1
 
@@ -574,6 +598,7 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         self.line_NameNewRecipe.setText('')
         self.text_DescriptionNewRecipe.setText('')
         self.label_uniqueName.setText('')
+        self.label_amtError.setText('')
 
         index = self.combo_ChefNewRecipe.findText('NA', Qt.MatchFixedString)
         if index >= 0:
@@ -599,3 +624,4 @@ class MainWindow(QTabWidget, display.Ui_TabWidget):
         self.editingRecipe = None
         self.label_SaveType.setText('As a new Recipe')
         self.button_Save.setText('SAVE')
+

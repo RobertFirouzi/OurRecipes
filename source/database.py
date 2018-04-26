@@ -104,6 +104,7 @@ def getAllMeasureUnits():
 #recipeId
 #ingredientType
 #amount
+#unit
 def getIngredients(recipeId):
     query = "SELECT * FROM Ingredients WHERE recipeId = {}".format(recipeId)
 
@@ -259,16 +260,16 @@ def addRecipeStep(step):
     addRow('Steps', columns , values)
 
 def addIngredient(ingredient):
-    columns = 'recipeId,ingredientType,amount'
+    columns = 'recipeId,ingredientType,amount,unit'
     values = str(ingredient[0]) + ',' \
              + str(ingredient[1])  + ',' \
-             + str(ingredient[2])
+             + str(ingredient[2]) + ','\
+             + str(ingredient[3])
     addRow('Ingredients', columns , values)
 
 def addIngredientType(ingredientType):
-    columns = 'name,unit'
-    values = str(ingredientType[0]) + ',' \
-             + str(ingredientType[1])
+    columns = 'name'
+    values = str(ingredientType)
     addRow('IngredientTypes', columns , values)
 
 def addChef(chef):

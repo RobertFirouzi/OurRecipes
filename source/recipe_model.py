@@ -17,7 +17,7 @@ INGREDIENT_ID = 0
 INGREDIENT_TYPE_ID = 0
 INGREDIENT_NAME = 1
 INGREDIENT_TYPE = 2
-INGREDIENT_MEAS_UNIT = 2
+INGREDIENT_MEAS_UNIT = 4
 INGREDIENT_AMOUNT = 3
 
 MEASURE_ID = 0
@@ -51,16 +51,16 @@ class MeasureUnit:
         self.name = name
 
 class IngredientType:
-    def __init__(self, id, name, measureUnit):
+    def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.measureUnit = measureUnit
 
 class Ingredient:
-    def __init__(self, id, ingredientType, amount):
+    def __init__(self, id, ingredientType, amount, unit):
         self.id = id
         self.ingredientType = ingredientType
         self.amount = amount
+        self.unit = unit
 
 class RecipeStep:
     def __init__(self, id, stepNo, text):
@@ -132,16 +132,16 @@ class RecipeBookModel:
             ingredients = list()
             for ingredient_row in ingredient_rows:
                 ingredientTypeRow = database.getIngredientType(ingredient_row[INGREDIENT_TYPE])
-                measurementUnitRow = database.getMeasurementUnit(ingredientTypeRow[INGREDIENT_MEAS_UNIT])
+                measurementUnitRow = database.getMeasurementUnit(ingredient_row[INGREDIENT_MEAS_UNIT])
                 measurementUnit = MeasureUnit(measurementUnitRow[MEASURE_ID], measurementUnitRow[MEASURE_TYPE])
                 ingredientType = IngredientType(ingredientTypeRow[INGREDIENT_ID],
-                                                ingredientTypeRow[INGREDIENT_NAME],
-                                                measurementUnit)
+                                                ingredientTypeRow[INGREDIENT_NAME])
 
 
                 ingredients.append(Ingredient(ingredient_row[INGREDIENT_ID],
                                               ingredientType,
-                                              ingredient_row[INGREDIENT_AMOUNT]))
+                                              ingredient_row[INGREDIENT_AMOUNT],
+                                              measurementUnit))
 
             chef = database.getChefType(recipe_row[RECIPE_CHEF])
             appliance = database.getApplianceType(recipe_row[RECIPE_APPLIANCE])
@@ -219,7 +219,7 @@ class RecipeBookModel:
             database.addRecipeStep([recipeId, step.stepNo, '"' + step.text + '"'], )
 
         for ingredient in recipe.ingredients:
-            database.addIngredient([recipeId, ingredient.ingredientType.id, ingredient.amount])
+            database.addIngredient([recipeId, ingredient.ingredientType.id, ingredient.amount, ingredient.unit.id])
 
     def deleteRecipe(self, recipeId):
         database.deleteRecipe(recipeId)
@@ -254,10 +254,7 @@ def getIngredientTypesDict():
     ingredientRows = database.getAllIngredientTypes()
 
     for row in ingredientRows:
-        measureUnitRow = database.getMeasurementUnit(row[INGREDIENT_MEAS_UNIT])
-        ingredientDict[row[INGREDIENT_NAME]] = IngredientType(row[INGREDIENT_ID],
-                                                row[INGREDIENT_NAME],
-                                                MeasureUnit(measureUnitRow[MEASURE_ID], measureUnitRow[MEASURE_TYPE]))
+        ingredientDict[row[INGREDIENT_NAME]] = IngredientType(row[INGREDIENT_ID], row[INGREDIENT_NAME])
 
     return ingredientDict
 
@@ -276,7 +273,7 @@ def addChefToDB(chef):
 
 #list [name, measureUnitId]
 def addIngredientTypeToDB(ingredient):
-    database.addIngredientType(['"' + ingredient[0] + '"', ingredient[1]])
+    database.addIngredientType('"' + ingredient + '"')
 
 #string appliance name
 def addApplianceToDB(appliance):
