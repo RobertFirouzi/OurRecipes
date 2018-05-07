@@ -3,15 +3,17 @@ from PySide.QtGui import *
 import display
 from recipe_model import *
 
-#TODO - filter ingredients exclusive or inclusive
-#TODO - update combo box refresh calls to new methods
+#TODO - don't clear output on view recipe, add aclear button
 #TODO - when add unit or ingredient to database, refresh current ingredients table?
+#TODO - filter ingredients exclusive or inclusive
 #TODO - Allow update unit, ingredient, appliance and chef name
+#TODO - Print button?
+#TODO - Select all/slect none when click checkbox row
 #TODO - package with PyInstaller
-#TODO - setup database with real items
-#TODO - cleaner look and output?
-#TODO = add pictures>
+#TODO - update combo box refresh calls to new methods
+#TODO = add pictures
 #TODO - use PyLatex to generae clean pdf output?
+#TODO - cleaner look and output?
 
 class MainWindow(QTabWidget, display.Ui_TabWidget):
     def __init__(self):
